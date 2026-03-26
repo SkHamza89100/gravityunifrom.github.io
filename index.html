@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gravity Uniforms by SK Hamza | Premium Uniform Manufacturer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-dark: #9A7830;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --dark2: #1A1A1A;
+    --dark3: #222222;
+    --white: #FAFAF8;
+    --white2: #F0EDE6;
+    --grey: #888880;
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 72px;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    transition: all 0.3s ease;
+  }
+
+  nav.scrolled {
+    height: 60px;
+    background: rgba(10,10,10,0.98);
+    border-bottom-color: rgba(201,168,76,0.3);
+  }
+
+  .nav-logo {
+    display: flex; flex-direction: column; line-height: 1;
+    text-decoration: none;
+  }
+  .nav-logo span:first-child {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .nav-logo span:last-child {
+    font-size: 0.6rem;
+    letter-spacing: 4px;
+    color: var(--grey);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--white2);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--black) !important;
+    padding: 8px 20px;
+    border-radius: 2px;
+    font-weight: 600 !important;
+  }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--black) !important; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column; gap: 5px;
+    cursor: pointer;
+    background: none; border: none; padding: 4px;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--white);
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile Menu */
+  .mobile-menu {
+    display: none;
+    position: fixed; top: 72px; left: 0; right: 0;
+    background: rgba(10,10,10,0.98);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding: 1.5rem 5%;
+    z-index: 999;
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  .mobile-menu.open {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .mobile-menu ul { list-style: none; }
+  .mobile-menu ul li { border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .mobile-menu ul li a {
+    display: block;
+    padding: 1rem 0;
+    color: var(--white2);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .mobile-menu ul li a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0 5%;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 60%),
+      linear-gradient(135deg, #0A0A0A 0%, #111111 50%, #0d0d0d 100%);
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 700px;
+    padding-top: 72px;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge i { font-size: 0.6rem; }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease 0.1s both;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--grey);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s ease 0.2s both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s ease 0.3s both;
+  }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--black);
+    padding: 14px 32px;
+    border: none; border-radius: 2px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-gold:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(201,168,76,0.3);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    padding: 14px 32px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 2px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  .hero-stats {
+    position: absolute; right: 5%; bottom: 15%;
+    display: flex; flex-direction: column; gap: 1.5rem;
+    animation: fadeIn 0.8s ease 0.5s both;
+  }
+  .stat-item { text-align: right; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-top: 2px;
+  }
+
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: var(--grey); font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+  .scroll-hint i { font-size: 1rem; }
+
+  /* ── SECTION BASE ── */
+  section { padding: 100px 5%; }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  .section-title span { color: var(--gold); }
+
+  .section-desc {
+    color: var(--grey);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    max-width: 560px;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--dark2); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-card {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 2.5rem;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 60px; height: 3px;
+    background: var(--gold);
+  }
+
+  .about-card-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: var(--white);
+  }
+
+  .about-card-text {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--grey);
+  }
+
+  .about-cards {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .about-pill {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 0.8rem 1rem;
+    border-radius: 3px;
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--white2);
+  }
+  .about-pill i { color: var(--gold); font-size: 0.85rem; }
+
+  .big-number {
+    font-family: var(--font-display);
+    font-size: 8rem;
+    font-weight: 900;
+    color: rgba(201,168,76,0.08);
+    line-height: 1;
+    position: absolute;
+    top: -20px; right: -10px;
+    pointer-events: none;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--black); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .service-card {
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem 1.8rem 2.5rem;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    group: true;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .service-card:hover {
+    border-color: rgba(201,168,76,0.2);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon {
+    width: 52px; height: 52px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  .service-card:hover .service-icon {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  .service-name {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.7rem;
+    color: var(--white);
+  }
+
+  .service-desc {
+    font-size: 0.82rem;
+    color: var(--grey);
+    line-height: 1.7;
+  }
+
+  .service-num {
+    position: absolute; top: 1.5rem; right: 1.8rem;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+  }
+
+  /* ── GALLERY ── */
+  #gallery { background: var(--dark2); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 220px);
+    gap: 12px;
+    margin-top: 3.5rem;
+  }
+
+  .gallery-item {
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    background: var(--dark3);
+    cursor: pointer;
+  }
+  .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .gallery-item:nth-child(4) { grid-column: span 2; }
+
+  .gallery-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 12px;
+    background: linear-gradient(135deg, var(--dark3) 0%, rgba(201,168,76,0.05) 100%);
+    border: 1px solid rgba(201,168,76,0.1);
+    transition: all 0.4s ease;
+    position: relative; overflow: hidden;
+  }
+  .gallery-placeholder::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .gallery-item:hover .gallery-placeholder::after { opacity: 1; }
+  .gallery-item:hover .gallery-placeholder { transform: scale(1.02); }
+
+  .gallery-icon {
+    font-size: 2.5rem;
+    color: var(--gold);
+    opacity: 0.6;
+  }
+  .gallery-label {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white2);
+    letter-spacing: 1px;
+  }
+  .gallery-sublabel {
+    font-size: 0.7rem;
+    color: var(--grey);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: rgba(201,168,76,0.1);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .gallery-overlay i { font-size: 1.5rem; color: var(--gold); }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+  /* ── WHY US ── */
+  #why { background: var(--black); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .why-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+
+  .why-card {
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 1.8rem 1.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .why-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle at 0% 0%, rgba(201,168,76,0.07) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .why-card:hover { border-color: rgba(201,168,76,0.2); transform: translateY(-3px); }
+  .why-card:hover::before { opacity: 1; }
+
+  .why-icon {
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .why-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+  }
+  .why-text { font-size: 0.78rem; color: var(--grey); line-height: 1.6; }
+
+  .why-visual {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 4px;
+    padding: 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .why-visual::before {
+    content: '';
+    position: absolute; top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at center, rgba(201,168,76,0.06) 0%, transparent 60%);
+  }
+  .why-big-icon {
+    font-size: 5rem;
+    color: rgba(201,168,76,0.15);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+  .why-quote {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--white2);
+    position: relative; z-index: 1;
+  }
+  .why-quote em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .why-author {
+    margin-top: 1rem;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--grey);
+    position: relative; z-index: 1;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--dark2); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    margin-top: 3.5rem;
+  }
+
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .contact-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .contact-icon-wrap {
+    width: 44px; height: 44px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--gold);
+    font-size: 1rem;
+  }
+  .contact-detail-label {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 4px;
+  }
+  .contact-detail-val {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--white2);
+  }
+
+  .whatsapp-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #25D366;
+    color: white;
+    padding: 13px 24px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+    width: fit-content;
+  }
+  .whatsapp-btn:hover {
+    background: #20bc5a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37,211,102,0.3);
+  }
+
+  /* Form */
+  .contact-form {
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+  .form-label {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+
+  .form-input, .form-textarea {
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 3px;
+    padding: 13px 16px;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s;
+    resize: none;
+  }
+  .form-input:focus, .form-textarea:focus {
+    border-color: rgba(201,168,76,0.5);
+  }
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--grey); }
+  .form-textarea { min-height: 120px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .form-error {
+    font-size: 0.72rem;
+    color: #e05c5c;
+    display: none;
+    margin-top: 2px;
+  }
+  .form-error.show { display: block; }
+  .form-input.invalid, .form-textarea.invalid {
+    border-color: rgba(224,92,92,0.5);
+  }
+
+  .form-success {
+    background: rgba(37,211,102,0.1);
+    border: 1px solid rgba(37,211,102,0.3);
+    color: #25D366;
+    padding: 14px 20px;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    display: none;
+    align-items: center;
+    gap: 10px;
+  }
+  .form-success.show { display: flex; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 3rem 5% 2rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-logo span:first-child {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: block;
+  }
+  .footer-logo span:last-child {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    color: var(--grey);
+    text-transform: uppercase;
+  }
+
+  .footer-socials {
+    display: flex; gap: 0.8rem;
+  }
+  .social-link {
+    width: 38px; height: 38px;
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--grey);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .social-link:hover {
+    background: var(--gold);
+    color: var(--black);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  .footer-copy {
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--grey);
+    letter-spacing: 1px;
+  }
+  .footer-copy span { color: var(--gold); }
+
+  /* ── FLOATING WHATSAPP ── */
+  .wa-float {
+    position: fixed;
+    bottom: 2rem; right: 2rem;
+    width: 56px; height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+    z-index: 999;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    transition: all 0.3s ease;
+    animation: pulse 2.5s infinite;
+  }
+  .wa-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(37,211,102,0.6);
+  }
+  .wa-tooltip {
+    position: absolute;
+    right: 68px; top: 50%;
+    transform: translateY(-50%);
+    background: var(--dark2);
+    color: var(--white);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .wa-float:hover .wa-tooltip { opacity: 1; }
+
+  /* ── DIVIDER ── */
+  .gold-divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin: 1.5rem 0;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+    50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7), 0 0 0 10px rgba(37,211,102,0.1); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .about-grid, .why-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-stats { position: static; flex-direction: row; gap: 2rem; margin-top: 3rem; }
+    .stat-item { text-align: left; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 200px); }
+    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+    .gallery-item:nth-child(4) { grid-column: span 1; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    section { padding: 70px 5%; }
+    .hero-content { max-width: 100%; }
+    .hero-stats { flex-wrap: wrap; }
+    .about-cards { grid-template-columns: 1fr; }
+    .why-features { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 160px); }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 480px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; grid-template-rows: none; }
+    .gallery-item, .gallery-item:nth-child(1), .gallery-item:nth-child(4) {
+      grid-column: span 1; grid-row: span 1; height: 160px;
+    }
+    .hero-actions { flex-direction: column; }
+    .btn-gold, .btn-outline { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">
+    <span>Gravity Uniforms</span>
+    <span>By SK Hamza · Kolkata</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#home" class="mob-link">Home</a></li>
+    <li><a href="#about" class="mob-link">About</a></li>
+    <li><a href="#services" class="mob-link">Services</a></li>
+    <li><a href="#gallery" class="mob-link">Gallery</a></li>
+    <li><a href="#why" class="mob-link">Why Us</a></li>
+    <li><a href="#contact" class="mob-link">Contact</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <i class="fas fa-star"></i>
+      Premium Uniform Manufacturer · Kolkata, India
+    </div>
+    <h1 class="hero-title">
+      Crafted With<br>
+      <em>Precision &amp; Pride</em>
+    </h1>
+    <p class="hero-sub">Quality fabrics, custom designs, and professional uniforms tailored for schools, hospitals, corporates, and beyond.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-gold"><i class="fab fa-whatsapp"></i> Get a Quote</a>
+      <a href="#services" class="btn-outline">Our Services <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Happy Clients</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10K+</div>
+        <div class="stat-label">Uniforms Delivered</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <div class="section-label">Who We Are</div>
+      <h2 class="section-title">Built on <span>Trust</span> &amp; Craftsmanship</h2>
+      <div class="gold-divider"></div>
+      <p class="section-desc">Gravity Uniforms by SK Hamza is a Kolkata-based premium uniform manufacturer and supplier. We bring together quality fabrics, precision stitching, and custom design to deliver uniforms that reflect the identity and values of your institution.</p>
+      <br>
+      <p class="section-desc" style="max-width:100%">From small schools to large corporate houses, we have built a reputation for reliability, consistency, and craftsmanship — delivering uniforms that stand the test of time.</p>
+      <div class="about-cards">
+        <div class="about-pill"><i class="fas fa-check-circle"></i> Quality Assured</div>
+        <div class="about-pill"><i class="fas fa-truck"></i> On-Time Delivery</div>
+        <div class="about-pill"><i class="fas fa-palette"></i> Custom Designs</div>
+        <div class="about-pill"><i class="fas fa-tags"></i> Bulk Orders</div>
+      </div>
+    </div>
+    <div class="about-visual reveal">
+      <div class="big-number">SK</div>
+      <div class="about-card" style="margin-bottom: 1rem;">
+        <div class="about-card-title">Our Mission</div>
+        <div class="about-card-text">To provide every institution with uniforms that build identity, confidence, and team spirit — crafted with the finest materials and delivered on time, every time.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-title">Our Promise</div>
+        <div class="about-card-text">No compromise on quality. Every stitch, every fabric, every delivery is handled with the professionalism that Gravity Uniforms is known for across Kolkata and beyond.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="reveal">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Our <span>Services</span></h2>
+    <p class="section-desc">Tailored uniform solutions for every industry — designed for comfort, durability, and a professional appearance that makes a lasting impression.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-num">01</div>
+      <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
+      <div class="service-name">School Uniforms</div>
+      <div class="service-desc">Durable, comfortable school uniforms in custom colors and designs — built for active students and easy maintenance.</div>
+    
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">02</div>
+      <div class="service-icon"><i class="fas fa-user-nurse"></i></div>
+      <div class="service-name">Hospital Uniforms</div>
+      <div class="service-desc">Hygienic, breathable uniforms for medical and healthcare professionals — designed for long shifts and clinical environments.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">03</div>
+      <div class="service-icon"><i class="fas fa-briefcase"></i></div>
+      <div class="service-name">Corporate Uniforms</div>
+      <div class="service-desc">Sharp, professional attire for offices, banks, and enterprises — representing your brand with elegance and authority.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">04</div>
+      <div class="service-icon"><i class="fas fa-utensils"></i></div>
+      <div class="service-name">Restaurant Uniforms</div>
+      <div class="service-desc">Stylish, functional uniforms for hospitality and F&B teams — designed to impress guests while keeping staff comfortable.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">05</div>
+      <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+      <div class="service-name">Security Uniforms</div>
+      <div class="service-desc">Authoritative, robust security uniforms with custom badges and insignia — built for presence, durability, and professionalism.</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="reveal">
+    <div class="section-label">Our Work</div>
+    <h2 class="section-title">Uniform <span>Gallery</span></h2>
+    <p class="section-desc">A glimpse into our craftsmanship — each uniform made with precision and pride for our valued clients.</p>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <i class="fas fa-graduation-cap gallery-icon"></i>
+        <div class="gallery-label">School Collection</div>
+        <div class="gallery-sublabel">Premium Series</div>
+      </div>
+      <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <i class="fas fa-briefcase gallery-icon"></i>
+        <div class="gallery-label">Corporate</div>
+        <div class="gallery-sublabel">Executive Line</div>
+      </div>
+      <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <i class="fas fa-user-nurse gallery-icon"></i>
+        <div class="gallery-label">Medical</div>
+        <div class="gallery-sublabel">Healthcare Series</div>
+      </div>
+      <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <i class="fas fa-utensils gallery-icon"></i>
+        <div class="gallery-label">Restaurant</div>
+        <div class="gallery-sublabel">Hospitality Line</div>
+      </div>
+      <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <i class="fas fa-shield-alt gallery-icon"></i>
+        <div class="gallery-label">Security</div>
+        <div class="gallery-sublabel">Guard Series</div>
+      </div>
+      <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <i class="fas fa-star gallery-icon"></i>
+        <div class="gallery-label">Custom Orders</div>
+        <div class="gallery-sublabel">Bespoke Design</div>
+      </div>
+      <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="reveal">
+    <div class="section-label">Why Gravity</div>
+    <h2 class="section-title">Why Choose <span>Us</span></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-features reveal">
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-gem"></i></div>
+        <div class="why-title">High Quality Fabric</div>
+        <div class="why-text">Only the finest fabrics — soft, durable, and long-lasting even after repeated washes.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-tags"></i></div>
+        <div class="why-title">Affordable Pricing</div>
+        <div class="why-text">Competitive pricing for bulk orders without any compromise on quality or finish.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-pencil-ruler"></i></div>
+        <div class="why-title">Custom Design</div>
+        <div class="why-text">Your logo, your colors, your brand — we bring your uniform vision to life, exactly as you imagine.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-clock"></i></div>
+        <div class="why-title">On-Time Delivery</div>
+        <div class="why-text">We respect your deadlines. Bulk or small, every order is delivered within the committed timeline.</div>
+      </div>
+    </div>
+    <div class="why-visual reveal">
+      <i class="fas fa-award why-big-icon"></i>
+      <p class="why-quote">"Uniforms are more than fabric — they are <em>identity</em>, <em>pride</em>, and <em>professionalism</em> stitched together."</p>
+      <p class="why-author">— SK Hamza, Founder, Gravity Uniforms</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Contact <span>Us</span></h2>
+    <p class="section-desc">Ready to place an order or need a custom quote? Reach out — we respond quickly.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <div class="contact-item">
+        <div class="contact-icon-wrap"><i class="fas fa-phone"></i></div>
+        <div>
+          <div class="contact-detail-label">Phone</div>
+          <div class="contact-detail-val">+91 8100032281</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon-wrap"><i class="fas fa-envelope"></i></div>
+        <div>
+          <div class="contact-detail-label">Email</div>
+          <div class="contact-detail-val">skhamza89100@gmail.com</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon-wrap"><i class="fas fa-map-marker-alt"></i></div>
+        <div>
+          <div class="contact-detail-label">Address</div>
+          <div class="contact-detail-val">Amtala, South 24 PGS, Kolkata, West Bengal, India</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon-wrap"><i class="fas fa-clock"></i></div>
+        <div>
+          <div class="contact-detail-label">Working Hours</div>
+          <div class="contact-detail-val">Mon – Sat: 9:00 AM – 7:00 PM</div>
+        </div>
+      </div>
+      <a href="https://wa.me/918100032281?text=Hello!%20I%20am%20interested%20in%20ordering%20uniforms%20from%20Gravity%20Uniforms." target="_blank" class="whatsapp-btn">
+        <i class="fab fa-whatsapp" style="font-size:1.2rem"></i>
+        Chat on WhatsApp
+      </a>
+    </div>
+    <div class="reveal">
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="fname">Your Name</label>
+            <input type="text" id="fname" class="form-input" placeholder="Rahul Kumar">
+            <span class="form-error" id="nameErr">Please enter your name.</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="fphone">Phone Number</label>
+            <input type="tel" id="fphone" class="form-input" placeholder="+91 9XXXXXXXXX">
+            <span class="form-error" id="phoneErr">Enter a valid 10-digit number.</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="fservice">Service Required</label>
+          <select id="fservice" class="form-input" style="cursor:pointer">
+            <option value="" disabled selected>Select a uniform category...</option>
+            <option>School Uniforms</option>
+            <option>Hospital Uniforms</option>
+            <option>Corporate Uniforms</option>
+            <option>Restaurant Uniforms</option>
+            <option>Security Uniforms</option>
+            <option>Other / Custom</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="fmsg">Message</label>
+          <textarea id="fmsg" class="form-textarea" placeholder="Tell us about your requirements — quantity, size, design ideas..."></textarea>
+          <span class="form-error" id="msgErr">Please write your message.</span>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <i class="fas fa-check-circle"></i>
+          Thank you! We'll get back to you within 24 hours.
+        </div>
+        <button type="submit" class="btn-gold" style="width:100%; justify-content:center;">
+          <i class="fas fa-paper-plane"></i> Send Enquiry
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <span>Gravity Uniforms</span>
+      <span>By SK Hamza · Kolkata, India</span>
+    </div>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/hamza__empire__/" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=61585909575336" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://wa.me/918100032281" target="_blank" class="social-link" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="mailto:gravityuniforms@gmail.com" class="social-link" aria-label="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+  </div>
+  <div class="footer-copy">
+    © 2025 <span>Gravity Uniforms by SK Hamza</span>. All rights reserved. · Manufactured with pride in Kolkata, India.
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/918100032281?text=Hello!%20I%20want%20to%20enquire%20about%20uniforms." target="_blank" class="wa-float" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+  <span class="wa-tooltip">Chat on WhatsApp</span>
+</a>
+
+<script>
+  // ── NAVBAR SCROLL ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ── HAMBURGER ──
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  document.querySelectorAll('.mob-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+  document.addEventListener('click', (e) => {
+    if (!navbar.contains(e.target) && !mobileMenu.contains(e.target)) {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+  });
+
+  // ── SCROLL REVEAL ──
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => revealObserver.observe(el));
+
+  // ── FORM VALIDATION ──
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let valid = true;
+
+    const name = document.getElementById('fname');
+    const phone = document.getElementById('fphone');
+    const msg = document.getElementById('fmsg');
+    const nameErr = document.getElementById('nameErr');
+    const phoneErr = document.getElementById('phoneErr');
+    const msgErr = document.getElementById('msgErr');
+
+    // Reset
+    [name, phone, msg].forEach(el => el.classList.remove('invalid'));
+    [nameErr, phoneErr, msgErr].forEach(el => el.classList.remove('show'));
+
+    if (name.value.trim().length < 2) {
+      name.classList.add('invalid');
+      nameErr.classList.add('show');
+      valid = false;
+    }
+    if (!/^[6-9]\d{9}$/.test(phone.value.trim().replace(/\s/g, '').replace('+91', ''))) {
+      phone.classList.add('invalid');
+      phoneErr.classList.add('show');
+      valid = false;
+    }
+    if (msg.value.trim().length < 10) {
+      msg.classList.add('invalid');
+      msgErr.classList.add('show');
+      valid = false;
+    }
+
+    if (valid) {
+      document.getElementById('formSuccess').classList.add('show');
+      form.reset();
+      setTimeout(() => document.getElementById('formSuccess').classList.remove('show'), 5000);
+    }
+  });
+
+  // ── ACTIVE NAV LINK ──
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+    });
+  });
+</script>
+</body>
+</html>
